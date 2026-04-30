@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Post from "../components/Post";
 import UserProfile from "../components/UserProfile";
 import UserContext from "../context/UserContext";
 import { useSelector } from "react-redux";
+import Upload from "../components/Upload";
 
 export default function UserProfilePage() {
     const {userId} = useContext(UserContext)
@@ -10,11 +11,13 @@ export default function UserProfilePage() {
         state.users.users.find(u => u.id === userId) 
     )
 
+    const [showUpload, setShowUpload] = useState(false)
+
     return (
         user ?
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6 flex flex-col gap-6">
             <div>
-                <UserProfile />
+                <UserProfile setShowUpload={setShowUpload}/>
             </div>
             <div>
                 <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3">
@@ -31,6 +34,7 @@ export default function UserProfilePage() {
                     }
                 </div>
             </div>
+            {showUpload && <Upload  setShowUpload={setShowUpload}/>}
         </div> : <div>Loading..</div>
     )
 }

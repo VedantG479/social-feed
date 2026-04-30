@@ -2,7 +2,7 @@ import { useContext } from "react"
 import UserContext from '../context/UserContext'
 import { useSelector } from "react-redux"
 
-export default function UserProfile() {
+export default function UserProfile({setShowUpload}) {
     const {userId} = useContext(UserContext)
     const user = useSelector(state => 
         state.users.users.find(u => u.id === userId) 
@@ -31,7 +31,8 @@ export default function UserProfile() {
                 </div>
             </div>
 
-            <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-yellow-400 hover:bg-yellow-500 text-black font-medium transition active:scale-95">
+            <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-yellow-400 hover:bg-yellow-500 text-black font-medium transition active:scale-95"
+                onClick={() => setShowUpload(true)}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
                 </svg>
