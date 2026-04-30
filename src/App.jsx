@@ -8,11 +8,11 @@ import UserContext from './context/UserContext'
 import { useSelector } from 'react-redux'
 
 function App() {
-  const { user, setUser } = useContext(UserContext)
+  const { userId, setUserId } = useContext(UserContext)
   const users = useSelector(state => state.users.users)
 
   useEffect(() => {
-    setUser(users[0])
+    setUserId(users[0].id)
   }, [])
 
   return (

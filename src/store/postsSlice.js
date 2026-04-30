@@ -1,6 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-const initialState = {allPosts: []}
+const initialState = {allPosts: [
+    {
+        id: 'sg3q5236t363w64', 
+        image: '/post1.jpeg', 
+        postedBy: '3r5w3hb9esf3s3s'
+    }, 
+    {
+        id: '325236t54gt4ee6436', 
+        image: '/post2.jpeg', 
+        postedBy: '3r5w3hb9esf3s3s'
+    }
+]}
 
 const postsSlice = createSlice({
     name: 'posts',
@@ -9,29 +20,9 @@ const postsSlice = createSlice({
         addPost: (state, action) => {
             const postToAdd = action.payload
             state.allPosts.push(postToAdd)
-        },
-        toggleLikePost: (state, action) => {
-            const postToToggle = action.payload.id
-            state.allPosts = state.allPosts.map((post) => {
-                if(post.id == postToToggle)   return {
-                    ...post, 
-                    like: !post.like
-                }
-                return post
-            })
-        },
-        toggleSavePost: (state, action) => {
-            const postToToggle = action.payload.id
-            state.allPosts = state.allPosts.map((post) => {
-                if(post.id == postToToggle)   return {
-                    ...post, 
-                    saved: !post.saved
-                }
-                return post
-            })
         }
     }
 })
 
-export const {addPost, toggleLikePost, toggleSavePost} = postsSlice.actions
+export const {addPost} = postsSlice.actions
 export default postsSlice.reducer

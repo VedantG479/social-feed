@@ -1,10 +1,15 @@
 import { useContext } from "react"
 import UserContext from '../context/UserContext'
+import { useSelector } from "react-redux"
 
 export default function UserProfile() {
-    const {user} = useContext(UserContext)
+    const {userId} = useContext(UserContext)
+    const user = useSelector(state => 
+        state.users.users.find(u => u.id === userId) 
+    )
 
     return (
+        user ? 
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 flex items-center justify-between">
             <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden">
@@ -32,6 +37,6 @@ export default function UserProfile() {
                 </svg>
                 Create
             </button>
-        </div>
+        </div> : <div>Loading..</div>
     )
 }
